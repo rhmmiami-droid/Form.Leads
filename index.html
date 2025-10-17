@@ -3,72 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rentas Miami</title>
+    <title>Rentas Miami - Encuentre su Hogar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Fondo gris claro */
+            background-color: #f3f4f6;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Alinea al inicio para que el formulario no esté pegado arriba */
+            align-items: flex-start;
             min-height: 100vh;
             padding: 2rem;
         }
         .form-container {
-            background-color: #ffffff; /* Fondo blanco para el formulario */
+            background-color: #ffffff;
             padding: 2.5rem;
-            border-radius: 1rem; /* Esquinas más redondeadas */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             width: 100%;
-            max-width: 800px; /* Ancho máximo para el formulario */
+            max-width: 800px;
         }
         .form-group label {
-            font-weight: 600; /* Texto de etiqueta más grueso */
-            color: #374151; /* Color de texto más oscuro */
+            font-weight: 600;
+            color: #374151;
             margin-bottom: 0.5rem;
             display: block;
         }
         .form-group input[type="text"],
-        .form-group input[type="date"],
         .form-group input[type="number"],
         .form-group input[type="email"],
-        .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #d1d5db; /* Borde gris claro */
-            border-radius: 0.5rem; /* Esquinas redondeadas */
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
             font-size: 1rem;
-            color: #4b5563; /* Color de texto */
+            color: #4b5563;
             transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .form-group select[multiple] {
-            min-height: 120px; /* Altura mínima para selección múltiple */
+            min-height: 120px;
         }
         .form-group input:focus,
-        .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #4f46e5; /* Borde morado al enfocar */
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Sombra morada suave al enfocar */
-        }
-        .radio-group label, .checkbox-group label {
-            display: flex;
-            align-items: center;
-            margin-right: 1.5rem;
-            cursor: pointer;
-            color: #4b5563;
-        }
-        .radio-group input[type="radio"], .checkbox-group input[type="checkbox"] {
-            margin-right: 0.5rem;
-            accent-color: #4f46e5; /* Color del radio/checkbox button */
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
         .submit-button {
-            background-color: #4f46e5; /* Botón morado */
+            background-color: #4f46e5;
             color: #ffffff;
             padding: 1rem 2rem;
-            border-radius: 0.75rem; /* Esquinas más redondeadas para el botón */
+            border-radius: 0.75rem;
             font-size: 1.125rem;
             font-weight: 700;
             cursor: pointer;
@@ -76,12 +65,12 @@
             border: none;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        .submit-button:hover {
-            background-color: #6366f1; /* Morado más claro al pasar el ratón */
-            transform: translateY(-2px); /* Pequeño efecto de elevación */
+        .submit-button:hover:not(:disabled) {
+            background-color: #6366f1;
+            transform: translateY(-2px);
         }
-        .submit-button:active {
-            transform: translateY(0); /* Vuelve a su posición original al hacer click */
+        .submit-button:active:not(:disabled) {
+            transform: translateY(0);
         }
         .note {
             font-size: 0.875rem;
@@ -89,37 +78,62 @@
             margin-top: 0.5rem;
             line-height: 1.4;
         }
+        /* --- ESTILOS PARA OPCIONES TIPO "CHIP" --- */
+        .chip-group input[type="radio"],
+        .chip-group input[type="checkbox"] {
+            display: none; /* Ocultamos el botón original */
+        }
+        .chip-group input[type="radio"]:checked + label,
+        .chip-group input[type="checkbox"]:checked + label {
+            background-color: #e0e7ff; /* indigo-100 */
+            border-color: #4f46e5;   /* indigo-600 */
+            color: #4338ca;         /* indigo-800 */
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Rentas en Miami</h1>
-        <form action="https://formspree.io/f/mdkdnazp" method="POST" class="space-y-6">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Encuentre su Próximo Hogar en Miami</h1>
+            <p class="mt-4 text-lg text-gray-600">
+                ¡Simplificamos su búsqueda de renta! Complete este formulario para comenzar. Nos encargaremos de encontrar las mejores propiedades que se ajusten a sus necesidades y presupuesto.
+            </p>
+        </div>
 
-            <h2 class="text-2xl font-semibold text-gray-700 pt-4 mb-4">Información de Contacto</h2>
+        <form id="mi-formulario" action="https://formspree.io/f/mdkdnazp" method="POST" class="space-y-6">
+
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Información de Contacto</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="form-group md:col-span-2">
+                <div class="form-group md:col-span-2 relative">
                     <label for="nombre_apellido">Nombre y Apellido:</label>
-                    <input type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Ej: Juan Pérez" required>
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-8">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <input type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Ej: Juan Pérez" required class="pl-10">
                 </div>
-                <div class="form-group">
+                <div class="form-group relative">
                     <label for="numero_telefono">Número de Teléfono:</label>
-                    <input type="text" id="numero_telefono" name="numero_telefono" placeholder="Ej: +1 (786) 123-4567" required>
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-8">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
+                    </div>
+                    <input type="text" id="numero_telefono" name="numero_telefono" placeholder="Ej: +1 (786) 123-4567" required class="pl-10">
                 </div>
-                <div class="form-group">
+                <div class="form-group relative">
                     <label for="correo">Correo Electrónico:</label>
-                    <input type="email" id="correo" name="correo" placeholder="Ej: cliente@ejemplo.com" required>
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-8">
+                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+                    </div>
+                    <input type="email" id="correo" name="correo" placeholder="Ej: cliente@ejemplo.com" required class="pl-10">
                 </div>
             </div>
 
-            <hr class="my-8 border-t border-gray-200">
-
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Propiedad que busca</h2>
+            <h2 class="text-2xl font-semibold text-gray-700 mt-10 pt-6 border-t mb-4">Propiedad que busca</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
                     <label for="fecha_mudanza_dia">Fecha a mudarse (Día):</label>
                     <select id="fecha_mudanza_dia" name="fecha_mudanza_dia" required>
-                        <option value="">Seleccione un día...</option>
+                        <option value="" disabled selected>Seleccione un día...</option>
                         <option value="1">Día 1 del mes</option>
                         <option value="15">Día 15 del mes</option>
                         <option value="finales">Finales de mes</option>
@@ -128,125 +142,126 @@
                 <div class="form-group">
                     <label for="fecha_mudanza_mes">Mes:</label>
                     <select id="fecha_mudanza_mes" name="fecha_mudanza_mes" required>
-                        <option value="">Seleccione un mes...</option>
-                        <option value="Enero">Enero</option>
-                        <option value="Febrero">Febrero</option>
-                        <option value="Marzo">Marzo</option>
-                        <option value="Abril">Abril</option>
-                        <option value="Mayo">Mayo</option>
-                        <option value="Junio">Junio</option>
-                        <option value="Julio">Julio</option>
-                        <option value="Agosto">Agosto</option>
-                        <option value="Septiembre">Septiembre</option>
-                        <option value="Octubre">Octubre</option>
-                        <option value="Noviembre">Noviembre</option>
-                        <option value="Diciembre">Diciembre</option>
+                        <option value="" disabled selected>Seleccione un mes...</option>
+                        <option value="Enero">Enero</option><option value="Febrero">Febrero</option><option value="Marzo">Marzo</option><option value="Abril">Abril</option><option value="Mayo">Mayo</option><option value="Junio">Junio</option><option value="Julio">Julio</option><option value="Agosto">Agosto</option><option value="Septiembre">Septiembre</option><option value="Octubre">Octubre</option><option value="Noviembre">Noviembre</option><option value="Diciembre">Diciembre</option>
                     </select>
                 </div>
                  <div class="form-group">
                     <label for="tipo_propiedad">Tipo de Propiedad (puede seleccionar varias):</label>
                     <select id="tipo_propiedad" name="tipo_propiedad[]" multiple required>
-                        <option value="casa">Casa</option>
-                        <option value="apartamento">Apartamento</option>
-                        <option value="duplex">Dúplex</option>
-                        <option value="studio">Studio</option>
-                        <option value="townhouse">Townhouse</option>
-                        <option value="otro">Otro</option>
+                        <option value="casa">Casa</option><option value="apartamento">Apartamento</option><option value="duplex">Dúplex</option><option value="studio">Studio</option><option value="townhouse">Townhouse</option><option value="otro">Otro</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="hab_ban">Habitaciones / Baños:</label>
                     <input type="text" id="hab_ban" name="hab_ban" placeholder="Ej: 3 hab / 2 baños">
                 </div>
-                <div class="form-group">
+                <div class="form-group relative">
                     <label for="presupuesto_ideal">Presupuesto Ideal:</label>
-                    <input type="number" id="presupuesto_ideal" name="presupuesto_ideal" placeholder="Ej: 2500 (USD)" min="0">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-8">
+                        <span class="text-gray-500 sm:text-sm">$</span>
+                    </div>
+                    <input type="number" id="presupuesto_ideal" name="presupuesto_ideal" placeholder="2500" min="0" class="pl-7">
                 </div>
-                <div class="form-group">
+                <div class="form-group relative">
                     <label for="area_zona">Área - Zonas o Zip Code (Miami):</label>
-                    <input type="text" id="area_zona" name="area_zona" placeholder="Ej: South Beach, Brickell, 33139">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none top-8">
+                        <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                    </div>
+                    <input type="text" id="area_zona" name="area_zona" placeholder="Ej: South Beach, Brickell, 33139" class="pl-10">
                 </div>
             </div>
 
-            <hr class="my-8 border-t border-gray-200">
-
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Información y Documentos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <h2 class="text-2xl font-semibold text-gray-700 mt-10 pt-6 border-t mb-4">Información y Documentos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
                 <div class="form-group">
                     <label for="cuantas_per_mudarse">¿Cuántas personas se mudarán?</label>
                     <input type="text" id="cuantas_per_mudarse" name="cuantas_per_mudarse" placeholder="Ej: 2 Adultos, 1 Niño" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group chip-group">
                     <label>Mascotas:</label>
-                    <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label><input type="radio" name="mascotas" value="si"> Sí</label>
-                        <label><input type="radio" name="mascotas" value="no" checked> No</label>
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <input type="radio" name="mascotas" value="si" id="mascota_si"><label for="mascota_si" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Sí</label>
+                        <input type="radio" name="mascotas" value="no" id="mascota_no" checked><label for="mascota_no" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">No</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group chip-group">
                     <label>Documentos de Identidad (ID o Pasaporte):</label>
-                    <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label><input type="radio" name="dispone_documento" value="si" checked> Sí</label>
-                        <label><input type="radio" name="dispone_documento" value="no"> No</label>
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <input type="radio" name="dispone_documento" value="si" id="doc_si" checked><label for="doc_si" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Sí</label>
+                        <input type="radio" name="dispone_documento" value="no" id="doc_no"><label for="doc_no" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">No</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group chip-group">
                     <label>Cuenta Bancaria y Prueba de Ingreso:</label>
-                    <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label><input type="radio" name="dispone_cuenta_bancaria" value="si" checked> Sí</label>
-                        <label><input type="radio" name="dispone_cuenta_bancaria" value="no"> No</label>
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <input type="radio" name="dispone_cuenta_bancaria" value="si" id="cuenta_si" checked><label for="cuenta_si" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Sí</label>
+                        <input type="radio" name="dispone_cuenta_bancaria" value="no" id="cuenta_no"><label for="cuenta_no" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">No</label>
                     </div>
                 </div>
-                <div class="form-group md:col-span-2">
+                <div class="form-group md:col-span-2 chip-group">
                     <label>Crédito:</label>
-                    <div class="flex flex-wrap gap-4 mt-2 radio-group" id="credit-radio-group">
-                        <label><input type="radio" name="credito" value="bueno"> Bueno (900-800)</label>
-                        <label><input type="radio" name="credito" value="regular"> Regular (700-650)</label>
-                        <label><input type="radio" name="credito" value="malo"> Malo (600-500)</label>
-                        <label><input type="radio" name="credito" value="no_aplica" checked> No aplica</label>
+                    <div class="flex flex-wrap gap-3 mt-2" id="credit-radio-group">
+                        <input type="radio" name="credito" value="bueno" id="cred_bueno"><label for="cred_bueno" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Bueno (900-800)</label>
+                        <input type="radio" name="credito" value="regular" id="cred_reg"><label for="cred_reg" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Regular (700-650)</label>
+                        <input type="radio" name="credito" value="malo" id="cred_malo"><label for="cred_malo" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Malo (600-500)</label>
+                        <input type="radio" name="credito" value="no_aplica" id="cred_na" checked><label for="cred_na" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">No aplica</label>
                     </div>
-                    <p class="note mt-2">El crédito no es un requisito indispensable para todas las propiedades; podemos ayudarle a encontrar opciones.</p>
-                    <div class="form-group mt-4 hidden" id="credit-score-input-group">
+                    <p class="note mt-2">El crédito no siempre es indispensable; podemos ayudarle a encontrar opciones flexibles.</p>
+                    <div class="form-group mt-4 hidden transition-all duration-300 ease-in-out" id="credit-score-input-group">
                         <label for="puntaje_credito">Puntaje de Crédito Aproximado:</label>
-                        <input type="number" id="puntaje_credito" name="puntaje_credito" placeholder="Ej: 750" min="0" max="900">
+                        <input type="number" id="puntaje_credito" name="puntaje_credito" placeholder="Ej: 750" min="300" max="900">
                     </div>
                 </div>
             </div>
             
-            <hr class="my-8 border-t border-gray-200">
-
-            <div class="form-group">
-                <label>Vía de Comunicación (puede seleccionar varias):</label>
-                <div class="flex flex-wrap gap-4 mt-2 checkbox-group">
-                    <label><input type="checkbox" name="preferencia_contacto[]" value="whatsapp" checked> WhatsApp</label>
-                    <label><input type="checkbox" name="preferencia_contacto[]" value="text"> Mensaje de Texto</label>
-                    <label><input type="checkbox" name="preferencia_contacto[]" value="email"> Correo Electrónico</label>
+            <div class="form-group mt-10 pt-6 border-t chip-group">
+                <label>¿Cómo prefiere que lo contactemos?</label>
+                <div class="flex flex-wrap gap-3 mt-2">
+                    <input type="checkbox" name="preferencia_contacto[]" value="whatsapp" id="contact_whatsapp" checked><label for="contact_whatsapp" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">WhatsApp</label>
+                    <input type="checkbox" name="preferencia_contacto[]" value="text" id="contact_text"><label for="contact_text" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Mensaje de Texto</label>
+                    <input type="checkbox" name="preferencia_contacto[]" value="email" id="contact_email"><label for="contact_email" class="cursor-pointer border rounded-lg px-4 py-2 transition-all duration-200 hover:bg-gray-50">Correo Electrónico</label>
                 </div>
             </div>
 
-            <div class="text-center mt-8">
-                <button type="submit" class="submit-button">Enviar Información</button>
+            <div class="text-center mt-10">
+                <button id="submit-btn" type="submit" class="submit-button w-full md:w-auto">Enviar Información</button>
             </div>
         </form>
     </div>
 
     <script>
-        // JavaScript para mostrar/ocultar el campo de puntaje de crédito
         document.addEventListener('DOMContentLoaded', function() {
+            // Lógica para mostrar/ocultar el campo de puntaje de crédito
             const creditRadioGroup = document.getElementById('credit-radio-group');
             const creditScoreInputGroup = document.getElementById('credit-score-input-group');
             const puntajeCreditoInput = document.getElementById('puntaje_credito');
 
             creditRadioGroup.addEventListener('change', function(event) {
-                const selectedValue = event.target.value;
+                const selectedValue = document.querySelector('input[name="credito"]:checked').value;
                 if (selectedValue === 'bueno' || selectedValue === 'regular' || selectedValue === 'malo') {
                     creditScoreInputGroup.classList.remove('hidden');
-                    puntajeCreditoInput.setAttribute('required', 'true'); // Hacer el campo requerido si se muestra
+                    puntajeCreditoInput.setAttribute('required', 'true');
                 } else {
                     creditScoreInputGroup.classList.add('hidden');
-                    puntajeCreditoInput.removeAttribute('required'); // No requerido si está oculto
-                    puntajeCreditoInput.value = ''; // Limpiar el valor si se oculta
+                    puntajeCreditoInput.removeAttribute('required');
+                    puntajeCreditoInput.value = '';
                 }
+            });
+
+            // Lógica para el estado de "Enviando..." del botón
+            const form = document.getElementById('mi-formulario');
+            const submitBtn = document.getElementById('submit-btn');
+
+            form.addEventListener('submit', function() {
+                // Pequeño delay para asegurar que la validación del navegador se complete
+                setTimeout(() => {
+                    if (form.checkValidity()) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerText = 'Enviando...';
+                        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+                    }
+                }, 10);
             });
         });
     </script>
