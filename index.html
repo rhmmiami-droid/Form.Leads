@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rentas Miami</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -54,10 +53,6 @@
             border-color: #4f46e5; /* Borde morado al enfocar */
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Sombra morada suave al enfocar */
         }
-        .form-group textarea {
-            min-height: 80px; /* Altura mínima para el área de texto */
-            resize: vertical; /* Permitir redimensionamiento vertical */
-        }
         .radio-group label, .checkbox-group label {
             display: flex;
             align-items: center;
@@ -101,26 +96,11 @@
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Rentas en Miami</h1>
         <form action="https://formspree.io/f/mdkdnazp" method="POST" class="space-y-6">
 
-            <!-- Sección de Información de Contacto (Movida a la parte superior) -->
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Información de Contacto:</h2>
+            <h2 class="text-2xl font-semibold text-gray-700 pt-4 mb-4">Información de Contacto</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="form-group">
+                <div class="form-group md:col-span-2">
                     <label for="nombre_apellido">Nombre y Apellido:</label>
                     <input type="text" id="nombre_apellido" name="nombre_apellido" placeholder="Ej: Juan Pérez" required>
-                </div>
-                <div class="form-group">
-                    <label>Preferencia de Contacto (puede seleccionar varias):</label>
-                    <div class="flex flex-wrap gap-4 mt-2 checkbox-group">
-                        <label>
-                            <input type="checkbox" name="preferencia_contacto[]" value="whatsapp" checked> WhatsApp
-                        </label>
-                        <label>
-                            <input type="checkbox" name="preferencia_contacto[]" value="text"> Mensaje de Texto
-                        </label>
-                        <label>
-                            <input type="checkbox" name="preferencia_contacto[]" value="email"> Correo Electrónico
-                        </label>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="numero_telefono">Número de Teléfono:</label>
@@ -134,24 +114,36 @@
 
             <hr class="my-8 border-t border-gray-200">
 
-            <!-- Sección de Fecha y Motivo -->
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Propiedad que busca</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
-                    <label for="fecha_mudanza">Fecha de Mudanza (Exacta o Finales de Mes):</label>
-                    <input type="text" id="fecha_mudanza" name="fecha_mudanza" placeholder="Ej: 15/07/2025 o Finales de Julio" required>
+                    <label for="fecha_mudanza_dia">Fecha a mudarse (Día):</label>
+                    <select id="fecha_mudanza_dia" name="fecha_mudanza_dia" required>
+                        <option value="">Seleccione un día...</option>
+                        <option value="1">Día 1 del mes</option>
+                        <option value="15">Día 15 del mes</option>
+                        <option value="finales">Finales de mes</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="motivo_mudanza">Motivo de la Mudanza:</label>
-                    <input type="text" id="motivo_mudanza" name="motivo_mudanza" placeholder="Ej: Cambio de trabajo, Ampliar familia" required>
+                    <label for="fecha_mudanza_mes">Mes:</label>
+                    <select id="fecha_mudanza_mes" name="fecha_mudanza_mes" required>
+                        <option value="">Seleccione un mes...</option>
+                        <option value="Enero">Enero</option>
+                        <option value="Febrero">Febrero</option>
+                        <option value="Marzo">Marzo</option>
+                        <option value="Abril">Abril</option>
+                        <option value="Mayo">Mayo</option>
+                        <option value="Junio">Junio</option>
+                        <option value="Julio">Julio</option>
+                        <option value="Agosto">Agosto</option>
+                        <option value="Septiembre">Septiembre</option>
+                        <option value="Octubre">Octubre</option>
+                        <option value="Noviembre">Noviembre</option>
+                        <option value="Diciembre">Diciembre</option>
+                    </select>
                 </div>
-            </div>
-
-            <hr class="my-8 border-t border-gray-200">
-
-            <!-- Sección de Lo que busca -->
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Lo que busca:</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="form-group">
+                 <div class="form-group">
                     <label for="tipo_propiedad">Tipo de Propiedad (puede seleccionar varias):</label>
                     <select id="tipo_propiedad" name="tipo_propiedad[]" multiple required>
                         <option value="casa">Casa</option>
@@ -163,110 +155,72 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="extra">Extra (Detalles adicionales):</label>
-                    <textarea id="extra" name="extra" rows="3" placeholder="Ej: Amoblado, con estacionamiento, vista al mar..."></textarea>
-                </div>
-                <div class="form-group">
                     <label for="hab_ban">Habitaciones / Baños:</label>
                     <input type="text" id="hab_ban" name="hab_ban" placeholder="Ej: 3 hab / 2 baños">
                 </div>
                 <div class="form-group">
                     <label for="presupuesto_ideal">Presupuesto Ideal:</label>
-                    <input type="number" id="presupuesto_ideal" name="presupuesto_ideal" placeholder="Ej: 1500 (USD)" min="0">
+                    <input type="number" id="presupuesto_ideal" name="presupuesto_ideal" placeholder="Ej: 2500 (USD)" min="0">
                 </div>
-                <div class="form-group md:col-span-2">
+                <div class="form-group">
                     <label for="area_zona">Área - Zonas o Zip Code (Miami):</label>
-                    <input type="text" id="area_zona" name="area_zona" placeholder="Ej: South Beach, Brickell, Coral Gables, 33139">
+                    <input type="text" id="area_zona" name="area_zona" placeholder="Ej: South Beach, Brickell, 33139">
                 </div>
             </div>
 
             <hr class="my-8 border-t border-gray-200">
 
-            <!-- Sección de Información Adicional -->
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Información Adicional:</h2>
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Información y Documentos</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
                     <label for="cuantas_per_mudarse">¿Cuántas personas se mudarán?</label>
-                    <input type="text" id="cuantas_per_mudarse" name="cuantas_per_mudarse" placeholder="Ej: 2 Adultos, 2 Adolescentes, 1 Niño, 1 Bebé (6 meses)" required>
+                    <input type="text" id="cuantas_per_mudarse" name="cuantas_per_mudarse" placeholder="Ej: 2 Adultos, 1 Niño" required>
                 </div>
                 <div class="form-group">
                     <label>Mascotas:</label>
                     <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label>
-                            <input type="radio" name="mascotas" value="si"> Sí
-                        </label>
-                        <label>
-                            <input type="radio" name="mascotas" value="no" checked> No
-                        </label>
+                        <label><input type="radio" name="mascotas" value="si"> Sí</label>
+                        <label><input type="radio" name="mascotas" value="no" checked> No</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>¿Dispone de Documento de Identidad (ID / Pasaporte)?</label>
+                    <label>Documentos de Identidad (ID o Pasaporte):</label>
                     <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label>
-                            <input type="radio" name="dispone_documento" value="si" checked> Sí
-                        </label>
-                        <label>
-                            <input type="radio" name="dispone_documento" value="no"> No
-                        </label>
+                        <label><input type="radio" name="dispone_documento" value="si" checked> Sí</label>
+                        <label><input type="radio" name="dispone_documento" value="no"> No</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>¿Dispone de Cuenta Bancaria o Prueba de Ingreso?</label>
+                    <label>Cuenta Bancaria y Prueba de Ingreso:</label>
                     <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label>
-                            <input type="radio" name="dispone_cuenta_bancaria" value="si" checked> Sí
-                        </label>
-                        <label>
-                            <input type="radio" name="dispone_cuenta_bancaria" value="no"> No
-                        </label>
+                        <label><input type="radio" name="dispone_cuenta_bancaria" value="si" checked> Sí</label>
+                        <label><input type="radio" name="dispone_cuenta_bancaria" value="no"> No</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group md:col-span-2">
                     <label>Crédito:</label>
                     <div class="flex flex-wrap gap-4 mt-2 radio-group" id="credit-radio-group">
-                        <label>
-                            <input type="radio" name="credito" value="bueno"> Bueno (900-800)
-                        </label>
-                        <label>
-                            <input type="radio" name="credito" value="regular"> Regular (700-650)
-                        </label>
-                        <label>
-                            <input type="radio" name="credito" value="malo"> Malo (600-500)
-                        </label>
-                        <label>
-                            <input type="radio" name="credito" value="no_aplica" checked> No aplica
-                        </label>
+                        <label><input type="radio" name="credito" value="bueno"> Bueno (900-800)</label>
+                        <label><input type="radio" name="credito" value="regular"> Regular (700-650)</label>
+                        <label><input type="radio" name="credito" value="malo"> Malo (600-500)</label>
+                        <label><input type="radio" name="credito" value="no_aplica" checked> No aplica</label>
                     </div>
-                    <p class="note mt-2">
-                        El crédito no es un requisito indispensable para todas las propiedades; podemos ayudarle a encontrar opciones.
-                    </p>
+                    <p class="note mt-2">El crédito no es un requisito indispensable para todas las propiedades; podemos ayudarle a encontrar opciones.</p>
                     <div class="form-group mt-4 hidden" id="credit-score-input-group">
                         <label for="puntaje_credito">Puntaje de Crédito Aproximado:</label>
                         <input type="number" id="puntaje_credito" name="puntaje_credito" placeholder="Ej: 750" min="0" max="900">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>¿Trabajan actualmente?</label>
-                    <div class="flex flex-wrap gap-4 mt-2 radio-group">
-                        <label>
-                            <input type="radio" name="trabajan_actualmente" value="si" checked> Sí
-                        </label>
-                        <label>
-                            <input type="radio" name="trabajan_actualmente" value="no"> No
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group md:col-span-2">
-                    <label for="promedio_mensual_general">Sumatoria total de ingreso de los miembros a mudarse (estimado o aproximado):</label>
-                    <input type="number" id="promedio_mensual_general" name="promedio_mensual_general" placeholder="Ej: 7000 (USD)" min="0">
-                </div>
-                <div class="form-group md:col-span-2">
-                    <label for="deposito">Depósito (Monto esperado):</label>
-                    <input type="text" id="deposito" name="deposito" placeholder="Ej: 3 meses de alquiler">
-                    <p class="note">
-                        (Generalmente los dueños piden 3 meses, si usted tiene 2 meses podemos ayudarle a conseguir opciones de 2 meses o hasta un 3er mes financiado)
-                    </p>
+            </div>
+            
+            <hr class="my-8 border-t border-gray-200">
+
+            <div class="form-group">
+                <label>Vía de Comunicación (puede seleccionar varias):</label>
+                <div class="flex flex-wrap gap-4 mt-2 checkbox-group">
+                    <label><input type="checkbox" name="preferencia_contacto[]" value="whatsapp" checked> WhatsApp</label>
+                    <label><input type="checkbox" name="preferencia_contacto[]" value="text"> Mensaje de Texto</label>
+                    <label><input type="checkbox" name="preferencia_contacto[]" value="email"> Correo Electrónico</label>
                 </div>
             </div>
 
